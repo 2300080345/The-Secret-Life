@@ -1,0 +1,1364 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;1,500&display=swap");
+@import "tailwindcss";
+
+:root {
+  --ink: #191a18;
+  --paper: #e8e4da;
+  --cream: #f3f0e8;
+  --ice: #afc3c8;
+  --moss: #39463a;
+  --gold: #d6a85d;
+  --line: rgba(25, 26, 24, 0.22);
+  --scroll: 0%;
+  color: var(--ink);
+  font-family: "DM Sans", sans-serif;
+  font-synthesis: none;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background: var(--ink);
+  }
+
+  body {
+    background: var(--paper);
+    overflow-x: hidden;
+  }
+
+  a,
+  button {
+    color: inherit;
+  }
+
+  ::selection {
+    background: var(--gold);
+    color: var(--ink);
+  }
+}
+
+.site-header {
+  align-items: center;
+  color: white;
+  display: flex;
+  height: 82px;
+  justify-content: space-between;
+  left: 0;
+  padding: 0 4vw;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 50;
+}
+
+.wordmark,
+.footer-mark {
+  display: block;
+  line-height: 0;
+}
+
+.wordmark img {
+  height: 34px;
+  width: 60px;
+}
+
+.footer-mark img {
+  height: 42px;
+  width: 74px;
+}
+
+.site-header .wordmark,
+.desktop-nav,
+.menu-button {
+  mix-blend-mode: difference;
+}
+
+.menu-open .wordmark,
+.menu-open .menu-button {
+  mix-blend-mode: normal;
+}
+
+.wordmark span,
+.footer-mark span {
+  color: var(--gold);
+  margin: 0 1px;
+}
+
+.desktop-nav {
+  display: flex;
+  gap: clamp(22px, 3vw, 54px);
+  margin-left: auto;
+}
+
+.desktop-nav a,
+.menu-button {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  position: relative;
+  text-transform: uppercase;
+}
+
+.desktop-nav a::after {
+  background: white;
+  bottom: -8px;
+  content: "";
+  height: 1px;
+  left: 0;
+  position: absolute;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.35s ease;
+  width: 100%;
+}
+
+.desktop-nav a:hover::after,
+.desktop-nav a:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.menu-button {
+  align-items: center;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  display: none;
+  gap: 12px;
+  padding: 8px 0;
+  position: relative;
+  z-index: 55;
+}
+
+.menu-button i,
+.menu-button i::before {
+  background: currentColor;
+  content: "";
+  display: block;
+  height: 1px;
+  transition: transform 0.3s;
+  width: 20px;
+}
+
+.menu-button i::before {
+  transform: translateY(5px);
+}
+
+.menu-open .menu-button i {
+  transform: translateY(2px) rotate(45deg);
+}
+
+.menu-open .menu-button i::before {
+  transform: rotate(-90deg);
+}
+
+.mobile-nav {
+  display: none;
+}
+
+.scroll-progress {
+  background: var(--gold);
+  height: 2px;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: var(--scroll);
+  z-index: 100;
+}
+
+.hero {
+  background: #222;
+  color: white;
+  height: 100svh;
+  min-height: 700px;
+  overflow: hidden;
+  position: relative;
+}
+
+.hero > img {
+  filter: grayscale(1) contrast(1.05);
+  height: 100%;
+  object-fit: cover;
+  object-position: center 55%;
+  scale: 1.05;
+  width: 100%;
+  animation: hero-breathe 14s ease-out both;
+}
+
+.hero-wash {
+  background:
+    linear-gradient(90deg, rgba(13, 14, 13, 0.75), rgba(15, 16, 15, 0.08) 65%),
+    linear-gradient(0deg, rgba(10, 11, 10, 0.55), transparent 45%);
+  inset: 0;
+  position: absolute;
+}
+
+.hero-topline {
+  display: flex;
+  font-size: 9px;
+  justify-content: space-between;
+  left: 4vw;
+  letter-spacing: 0.16em;
+  opacity: 0.65;
+  position: absolute;
+  right: 4vw;
+  text-transform: uppercase;
+  top: 116px;
+}
+
+.hero-title {
+  left: 4vw;
+  position: absolute;
+  top: 23%;
+}
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.4em;
+  margin-bottom: 18px;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  font-size: clamp(72px, 11.5vw, 184px);
+  font-weight: 500;
+  letter-spacing: -0.085em;
+  line-height: 0.72;
+  text-transform: uppercase;
+}
+
+.hero h1 em {
+  color: var(--paper);
+  font-family: "Playfair Display", serif;
+  font-weight: 500;
+  margin-left: 14vw;
+  text-transform: none;
+}
+
+.hero-statement {
+  bottom: 9%;
+  font-size: clamp(17px, 1.4vw, 22px);
+  left: 52%;
+  line-height: 1.45;
+  position: absolute;
+}
+
+.hero-statement strong {
+  font-family: "Playfair Display", serif;
+  font-size: 1.2em;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.scroll-cue {
+  align-items: center;
+  bottom: 9%;
+  display: flex;
+  font-size: 9px;
+  gap: 18px;
+  left: 4vw;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.arrow {
+  fill: none;
+  height: 16px;
+  stroke: currentColor;
+  stroke-width: 1.25;
+  transition: transform 0.3s;
+  width: 32px;
+}
+
+a:hover .arrow {
+  transform: translateX(6px);
+}
+
+.arrow--down {
+  transform: rotate(90deg);
+  width: 24px;
+}
+
+.frame-number {
+  bottom: 4%;
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  opacity: 0.45;
+  position: absolute;
+  right: 4vw;
+}
+
+.section-pad {
+  padding-left: 6vw;
+  padding-right: 6vw;
+}
+
+.section-label {
+  align-items: center;
+  display: flex;
+  font-size: 9px;
+  gap: 22px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.section-label span:first-child {
+  align-items: center;
+  display: flex;
+  gap: 18px;
+}
+
+.section-label span:first-child::after {
+  background: currentColor;
+  content: "";
+  height: 1px;
+  opacity: 0.4;
+  width: 45px;
+}
+
+.ordinary {
+  background: var(--paper);
+  padding-bottom: 11vw;
+  padding-top: 8vw;
+}
+
+.ordinary-grid {
+  display: grid;
+  gap: 10vw;
+  grid-template-columns: 1.2fr 0.7fr;
+  margin-top: 9vw;
+}
+
+.data-label {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  margin-bottom: 28px;
+  text-transform: uppercase;
+}
+
+.ordinary h2,
+.people h2,
+.journey-intro h2 {
+  font-size: clamp(46px, 6.8vw, 106px);
+  font-weight: 500;
+  letter-spacing: -0.07em;
+  line-height: 0.92;
+}
+
+h2 em {
+  font-family: "Playfair Display", serif;
+  font-weight: 500;
+}
+
+.routine {
+  align-self: end;
+  max-width: 440px;
+}
+
+.routine > p {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(18px, 1.6vw, 25px);
+  line-height: 1.5;
+}
+
+.routine-list {
+  border-top: 1px solid var(--line);
+  display: grid;
+  font-size: 9px;
+  gap: 10px;
+  letter-spacing: 0.12em;
+  margin-top: 44px;
+  padding-top: 16px;
+  text-transform: uppercase;
+}
+
+.contact-sheet {
+  display: grid;
+  gap: 7px;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 9vw;
+}
+
+.contact-sheet figure {
+  overflow: hidden;
+  position: relative;
+}
+
+.contact-sheet img {
+  filter: grayscale(1);
+  height: 21vw;
+  max-height: 340px;
+  min-height: 190px;
+  object-fit: cover;
+  object-position: var(--crop) center;
+  scale: 1.35;
+  width: 100%;
+}
+
+.contact-sheet figure:nth-child(even) img {
+  filter: grayscale(1) brightness(0.75);
+}
+
+.contact-sheet figcaption {
+  bottom: 10px;
+  color: white;
+  font-size: 8px;
+  left: 11px;
+  letter-spacing: 0.16em;
+  position: absolute;
+}
+
+.ordinary-foot {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(24px, 3vw, 46px);
+  font-style: italic;
+  line-height: 1.2;
+  margin: 8vw 0 0 auto;
+  max-width: 780px;
+  text-align: right;
+}
+
+.daydreamer {
+  color: white;
+  height: 120svh;
+  min-height: 850px;
+  overflow: hidden;
+  position: relative;
+}
+
+.dream-bg {
+  background-position: center;
+  background-size: cover;
+  filter: saturate(0.5) contrast(1.1);
+  inset: -5%;
+  position: absolute;
+}
+
+.dream-cloud {
+  backdrop-filter: blur(5px);
+  background:
+    radial-gradient(circle at 55% 45%, transparent 0 19%, rgba(21, 28, 25, 0.15) 47%),
+    linear-gradient(rgba(24, 27, 25, 0.1), rgba(15, 20, 18, 0.68));
+  inset: 0;
+  position: absolute;
+}
+
+.dream-content {
+  inset: 0;
+  padding-top: 8vw;
+  position: absolute;
+}
+
+.dream-kicker {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(26px, 4vw, 62px);
+  font-style: italic;
+  margin: 14vw 0 -1vw 9vw;
+}
+
+.daydreamer h2 {
+  font-size: clamp(70px, 13vw, 205px);
+  font-weight: 500;
+  letter-spacing: -0.08em;
+  line-height: 0.8;
+  white-space: nowrap;
+}
+
+.daydreamer h2 em {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.75);
+}
+
+.dream-note {
+  bottom: 8%;
+  display: grid;
+  gap: 28px;
+  grid-template-columns: 120px 1fr;
+  max-width: 580px;
+  position: absolute;
+  right: 8vw;
+}
+
+.dream-note span {
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.dream-note p {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(18px, 1.5vw, 24px);
+  line-height: 1.5;
+}
+
+.journey {
+  background: #1c211e;
+  color: white;
+}
+
+.journey-intro {
+  min-height: 78vh;
+  padding-bottom: 8vw;
+  padding-top: 8vw;
+}
+
+.journey-intro h2 {
+  margin-top: 11vw;
+}
+
+.journey-intro > p {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(18px, 1.7vw, 26px);
+  line-height: 1.5;
+  margin: 5vw 12vw 0 auto;
+  max-width: 450px;
+}
+
+.destination {
+  height: 110svh;
+  min-height: 760px;
+  overflow: hidden;
+  position: relative;
+}
+
+.destination > img {
+  height: 115%;
+  inset: -7.5% 0;
+  object-fit: cover;
+  position: absolute;
+  transition: scale 1.5s ease;
+  width: 100%;
+}
+
+.destination:hover > img {
+  scale: 1.02;
+}
+
+.destination-shade {
+  background:
+    linear-gradient(90deg, rgba(11, 16, 14, 0.65), transparent 64%),
+    linear-gradient(0deg, rgba(10, 13, 12, 0.6), transparent 50%);
+  inset: 0;
+  position: absolute;
+}
+
+.coordinates {
+  display: flex;
+  font-size: 8px;
+  gap: 25px;
+  left: 5vw;
+  letter-spacing: 0.15em;
+  position: absolute;
+  top: 6%;
+}
+
+.destination-title {
+  bottom: 9%;
+  left: 6vw;
+  position: absolute;
+}
+
+.destination-title > span {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 0.17em;
+  margin-bottom: 18px;
+  text-transform: uppercase;
+}
+
+.destination h3 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(68px, 11vw, 170px);
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: -0.07em;
+  line-height: 0.9;
+}
+
+.destination-title p {
+  font-size: 11px;
+  letter-spacing: 0.13em;
+  margin-top: 20px;
+  text-transform: uppercase;
+}
+
+.inset-photo {
+  position: absolute;
+  right: 7vw;
+  top: 15%;
+  width: clamp(190px, 22vw, 360px);
+}
+
+.inset-photo img {
+  aspect-ratio: 0.75;
+  object-fit: cover;
+  width: 100%;
+}
+
+.inset-photo figcaption {
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  line-height: 1.5;
+  margin-top: 10px;
+  text-transform: uppercase;
+}
+
+.iceland > img {
+  object-position: center;
+}
+
+.iceland .destination-shade {
+  background: linear-gradient(0deg, rgba(12, 18, 16, 0.65), transparent 55%);
+}
+
+.destination.iceland .destination-title--wide {
+  left: auto;
+  max-width: calc(100vw - 12vw);
+  right: 6vw;
+  text-align: right;
+  transform: translateY(35px);
+  width: 90%;
+}
+
+.destination.iceland .destination-title--wide.is-visible {
+  transform: translateY(0);
+}
+
+.destination.himalayas .destination-title.is-visible {
+  transform: translateX(-50%) translateY(0);
+}
+
+.destination-title--wide h3 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(72px, 12.5vw, 205px);
+  font-style: italic;
+  white-space: nowrap;
+}
+
+.ride-note {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: 5vw;
+  top: 8%;
+}
+
+.ride-note strong {
+  font-size: 38px;
+  letter-spacing: -0.05em;
+}
+
+.ride-note span {
+  font-size: 8px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.speed-lines {
+  left: 5vw;
+  position: absolute;
+  top: 26%;
+}
+
+.speed-lines i {
+  background: rgba(255, 255, 255, 0.6);
+  display: block;
+  height: 1px;
+  margin-bottom: 14px;
+  width: 12vw;
+}
+
+.speed-lines i:nth-child(2) {
+  width: 8vw;
+}
+
+.speed-lines i:nth-child(3) {
+  width: 4vw;
+}
+
+.himalayas .destination-shade {
+  background: linear-gradient(0deg, rgba(6, 10, 13, 0.75), transparent 60%);
+}
+
+.destination.himalayas .destination-title {
+  left: 50%;
+  max-width: calc(100vw - 12vw);
+  text-align: center;
+  transform: translateX(-50%) translateY(35px);
+  width: 90%;
+}
+
+.himalayas .destination-title h3 {
+  white-space: nowrap;
+}
+
+.people {
+  background: var(--cream);
+  padding-bottom: 10vw;
+  padding-top: 8vw;
+}
+
+.people-heading {
+  display: grid;
+  gap: 6vw;
+  grid-template-columns: 1fr 0.45fr;
+  margin-top: 9vw;
+}
+
+.people-heading p {
+  align-self: end;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(18px, 1.6vw, 24px);
+  line-height: 1.5;
+  max-width: 390px;
+}
+
+.character-list {
+  border-top: 1px solid var(--line);
+  margin-top: 9vw;
+}
+
+.character {
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  gap: 3vw;
+  grid-template-columns: 40px 1.2fr 0.65fr 1fr 40px;
+  min-height: 145px;
+  padding: 26px 0;
+  transition:
+    color 0.35s,
+    padding 0.35s;
+}
+
+.character:hover {
+  color: #6e532d;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.character > span,
+.character > em {
+  font-size: 9px;
+  font-style: normal;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.character h3 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(27px, 3vw, 47px);
+  font-weight: 500;
+}
+
+.character p {
+  font-size: 13px;
+  line-height: 1.6;
+  max-width: 330px;
+}
+
+.seeing {
+  background: #252c28;
+  color: white;
+  padding-bottom: 11vw;
+  padding-top: 8vw;
+}
+
+.seeing-grid {
+  display: grid;
+  gap: 5vw 3vw;
+  grid-template-columns: 1.15fr 0.7fr;
+  margin-top: 9vw;
+}
+
+.seeing-quote {
+  grid-column: 1 / -1;
+  margin-left: 13vw;
+  max-width: 1000px;
+}
+
+.seeing-quote > span {
+  font-size: 9px;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+}
+
+.seeing blockquote {
+  font-size: clamp(38px, 5.8vw, 90px);
+  letter-spacing: -0.06em;
+  line-height: 0.98;
+  margin-top: 30px;
+}
+
+.seeing blockquote em {
+  color: var(--ice);
+  font-family: "Playfair Display", serif;
+}
+
+.gallery-main {
+  margin-top: 8vw;
+}
+
+.gallery-main img {
+  aspect-ratio: 1.4;
+  object-fit: cover;
+  width: 100%;
+}
+
+.gallery-main figcaption {
+  display: flex;
+  font-family: "Playfair Display", serif;
+  font-size: 17px;
+  justify-content: space-between;
+  margin-top: 14px;
+}
+
+.gallery-main figcaption span {
+  font-family: "DM Sans", sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.gallery-side {
+  align-self: end;
+  justify-self: end;
+  width: 78%;
+}
+
+.gallery-side img {
+  aspect-ratio: 0.78;
+  object-fit: cover;
+  width: 100%;
+}
+
+.gallery-side figcaption {
+  font-family: "Playfair Display", serif;
+  font-size: 26px;
+  font-style: italic;
+  margin-top: 12px;
+}
+
+.gallery-note {
+  font-size: 11px;
+  grid-column: 1 / -1;
+  letter-spacing: 0.1em;
+  line-height: 2;
+  margin-left: 15vw;
+  text-transform: uppercase;
+}
+
+.philosophy {
+  color: white;
+  min-height: 115svh;
+  overflow: hidden;
+  position: relative;
+}
+
+.philosophy-image {
+  background-position: center;
+  background-size: cover;
+  filter: saturate(0.7);
+  inset: 0;
+  position: absolute;
+}
+
+.philosophy-shade {
+  background:
+    linear-gradient(90deg, rgba(14, 20, 16, 0.8), rgba(14, 20, 16, 0.2)),
+    linear-gradient(0deg, rgba(7, 12, 9, 0.55), transparent);
+  inset: 0;
+  position: absolute;
+}
+
+.philosophy-content {
+  min-height: 115svh;
+  padding-bottom: 7vw;
+  padding-top: 8vw;
+  position: relative;
+}
+
+.manifesto {
+  display: flex;
+  flex-direction: column;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(35px, 5.7vw, 88px);
+  letter-spacing: -0.045em;
+  line-height: 1.05;
+  margin-top: 10vw;
+}
+
+.manifesto span:nth-child(even) {
+  margin-left: 9vw;
+}
+
+.manifesto .accent {
+  color: var(--gold);
+  font-style: italic;
+  margin-left: 25vw;
+}
+
+.purpose {
+  bottom: 7vw;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  position: absolute;
+  right: 7vw;
+  text-transform: uppercase;
+}
+
+.final-frame {
+  color: white;
+  height: 110svh;
+  min-height: 760px;
+  overflow: hidden;
+  position: relative;
+}
+
+.final-frame > img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.final-shade {
+  background:
+    linear-gradient(90deg, rgba(20, 17, 13, 0.7), transparent 65%),
+    linear-gradient(0deg, rgba(15, 12, 10, 0.45), transparent 55%);
+  inset: 0;
+  position: absolute;
+}
+
+.final-content {
+  inset: 0;
+  padding-bottom: 7vw;
+  padding-top: 7vw;
+  position: absolute;
+}
+
+.issue {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  margin-top: 15vh;
+}
+
+.final-frame h2 {
+  font-size: clamp(67px, 10vw, 150px);
+  font-weight: 500;
+  letter-spacing: -0.075em;
+  line-height: 0.83;
+  margin-top: 35px;
+  text-transform: uppercase;
+}
+
+.final-frame h2 em {
+  color: #e8bd76;
+  text-transform: none;
+}
+
+.final-copy {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(18px, 1.7vw, 26px);
+  line-height: 1.55;
+  margin-top: 45px;
+}
+
+.return-link {
+  align-items: center;
+  bottom: 7vw;
+  display: flex;
+  font-size: 9px;
+  gap: 20px;
+  letter-spacing: 0.15em;
+  position: absolute;
+  right: 6vw;
+  text-transform: uppercase;
+}
+
+footer {
+  align-items: end;
+  background: #171916;
+  color: #d7d5cd;
+  display: grid;
+  font-size: 9px;
+  gap: 5vw;
+  grid-template-columns: 0.6fr 1.2fr 1fr auto;
+  letter-spacing: 0.12em;
+  min-height: 300px;
+  padding: 7vw 6vw 4vw;
+  text-transform: uppercase;
+}
+
+.footer-links {
+  display: flex;
+  gap: 28px;
+}
+
+.footer-links a {
+  border-bottom: 1px solid transparent;
+  padding-bottom: 3px;
+}
+
+.footer-links a:hover {
+  border-color: currentColor;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(35px);
+  transition:
+    opacity 0.9s ease,
+    transform 1.1s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes hero-breathe {
+  from {
+    scale: 1.12;
+  }
+  to {
+    scale: 1.05;
+  }
+}
+
+@media (max-width: 800px) {
+  .site-header {
+    height: 68px;
+    padding: 0 22px;
+  }
+
+  .desktop-nav {
+    display: none;
+  }
+
+  .menu-button {
+    display: flex;
+  }
+
+  .mobile-nav {
+    background: #1b201d;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    inset: 0;
+    padding: 100px 24px 40px;
+    position: fixed;
+    transform: translateY(-100%);
+    transition: transform 0.55s cubic-bezier(0.7, 0, 0.2, 1);
+    visibility: hidden;
+    z-index: 50;
+  }
+
+  .menu-open .mobile-nav {
+    transform: translateY(0);
+    visibility: visible;
+  }
+
+  .mobile-nav p {
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    margin-bottom: 35px;
+    opacity: 0.5;
+    text-transform: uppercase;
+  }
+
+  .mobile-nav a {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    font-family: "Playfair Display", serif;
+    font-size: 37px;
+    padding: 18px 0;
+  }
+
+  .mobile-nav a span {
+    display: inline-block;
+    font-family: "DM Sans", sans-serif;
+    font-size: 9px;
+    margin-right: 20px;
+    opacity: 0.5;
+  }
+
+  .hero {
+    min-height: 680px;
+  }
+
+  .hero > img {
+    object-position: 58% center;
+  }
+
+  .hero-topline {
+    left: 22px;
+    right: 22px;
+    top: 92px;
+  }
+
+  .hero-topline span:last-child {
+    display: none;
+  }
+
+  .hero-title {
+    left: 22px;
+    top: 26%;
+  }
+
+  .hero h1 {
+    font-size: clamp(66px, 24vw, 105px);
+    line-height: 0.76;
+  }
+
+  .hero h1 em {
+    margin-left: 8vw;
+  }
+
+  .hero-statement {
+    bottom: 14%;
+    left: 22px;
+  }
+
+  .scroll-cue {
+    bottom: 6%;
+    left: 22px;
+  }
+
+  .section-pad {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+
+  .ordinary,
+  .people,
+  .seeing {
+    padding-bottom: 90px;
+    padding-top: 70px;
+  }
+
+  .ordinary-grid,
+  .people-heading {
+    grid-template-columns: 1fr;
+    margin-top: 80px;
+  }
+
+  .routine {
+    margin-left: 12vw;
+  }
+
+  .contact-sheet {
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 70px;
+  }
+
+  .contact-sheet img {
+    height: 50vw;
+  }
+
+  .ordinary-foot {
+    margin-top: 70px;
+    text-align: left;
+  }
+
+  .daydreamer {
+    height: 100svh;
+    min-height: 700px;
+  }
+
+  .dream-content {
+    padding-top: 70px;
+  }
+
+  .dream-kicker {
+    margin: 23vh 0 7px 0;
+  }
+
+  .daydreamer h2 {
+    font-size: 18vw;
+    white-space: normal;
+  }
+
+  .dream-note {
+    bottom: 7%;
+    grid-template-columns: 1fr;
+    left: 22px;
+    right: 22px;
+  }
+
+  .journey-intro {
+    min-height: 70vh;
+    padding-bottom: 80px;
+    padding-top: 70px;
+  }
+
+  .journey-intro h2 {
+    margin-top: 100px;
+  }
+
+  .journey-intro > p {
+    margin: 50px 0 0 15vw;
+  }
+
+  .destination {
+    height: 94svh;
+    min-height: 700px;
+  }
+
+  .inset-photo {
+    right: 22px;
+    top: 12%;
+    width: 37vw;
+  }
+
+  .destination-title {
+    bottom: 8%;
+    left: 22px;
+  }
+
+  .destination h3 {
+    font-size: min(15vw, 84px);
+  }
+
+  .destination-title--wide {
+    left: 50%;
+    max-width: calc(100vw - 44px);
+    width: calc(100vw - 44px);
+  }
+
+  .destination.iceland .destination-title--wide {
+    left: auto;
+    right: 0;
+    text-align: right;
+    transform: translateY(35px);
+  }
+
+  .destination.iceland .destination-title--wide.is-visible {
+    transform: translateX(0) translateY(0);
+  }
+
+  .destination-title--wide h3 {
+    font-size: min(15.5vw, 88px);
+  }
+
+  .himalayas .destination-title {
+    max-width: calc(100vw - 44px);
+    width: calc(100vw - 44px);
+  }
+
+  .himalayas .destination-title h3 {
+    font-size: min(14vw, 80px);
+  }
+
+  .coordinates {
+    left: 22px;
+  }
+
+  .ride-note {
+    right: 22px;
+  }
+
+  .people-heading p {
+    margin-left: 15vw;
+  }
+
+  .character {
+    align-items: start;
+    gap: 10px;
+    grid-template-columns: 32px 1fr 30px;
+    padding: 30px 0;
+  }
+
+  .character > em,
+  .character > p {
+    grid-column: 2 / 4;
+  }
+
+  .character .arrow {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .seeing-grid {
+    grid-template-columns: 1fr;
+    margin-top: 80px;
+  }
+
+  .seeing-quote {
+    margin-left: 0;
+  }
+
+  .gallery-main,
+  .gallery-side {
+    margin-top: 50px;
+    width: 100%;
+  }
+
+  .gallery-note {
+    grid-column: auto;
+    margin: 40px 0 0 12vw;
+  }
+
+  .philosophy,
+  .philosophy-content {
+    min-height: 100svh;
+  }
+
+  .philosophy-content {
+    padding-top: 70px;
+  }
+
+  .manifesto {
+    font-size: 10vw;
+    margin-top: 20vh;
+  }
+
+  .manifesto span:nth-child(even) {
+    margin-left: 5vw;
+  }
+
+  .manifesto .accent {
+    margin-left: 12vw;
+  }
+
+  .final-content {
+    padding-top: 70px;
+  }
+
+  .final-frame > img {
+    object-position: 62% center;
+  }
+
+  .final-frame h2 {
+    font-size: 18vw;
+  }
+
+  .return-link {
+    bottom: 40px;
+    left: 22px;
+    right: auto;
+  }
+
+  footer {
+    align-items: start;
+    gap: 30px;
+    grid-template-columns: 1fr;
+    padding: 60px 22px 35px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
