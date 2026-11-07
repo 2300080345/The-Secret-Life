@@ -377,7 +377,7 @@ function App() {
 
       <footer>
         <div className="footer-mark">
-          <img src="/life.png" alt="The Secret Life" />
+          <img src="/life.jpg" alt="The Secret Life" />
         </div>
         <p>An unofficial cinematic tribute to a life less ordinary.</p>
         <div className="footer-links">
